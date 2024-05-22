@@ -53,12 +53,87 @@
       </nav>
     </header>
 
-    <main class="container my-4"></main>
-
-    <footer class="bg-dark text-white py-3">
-      <div class="container">
-        <p>&copy; 2023 Travel Company. All rights reserved.</p>
+    <main class="container my-4">
+      <h1>Travel Details</h1>
+      <div class="row py-4">
+        <div
+          class="col d-flex justify-content-center"
+          id="travel-details"
+        ></div>
       </div>
-    </footer>
+    </main>
+
+    <script>
+      let travelData = [
+        {
+          id: "1",
+          name: "Paris",
+          duration: "7 days",
+          highlights: "Eiffel Tower, Louvre Museum",
+          details: "A wonderful trip to the romantic city of Paris.",
+        },
+        {
+          id: "2",
+          name: "Tokyo",
+          duration: "14 days",
+          highlights: "Tokyo Tower, Meiji Shrine",
+          details: "A breathtaking experience in the bustling city of Tokyo.",
+        },
+        {
+          id: "3",
+          name: "Rome",
+          duration: "5 days",
+          highlights: "Colosseum, Vatican City",
+          details: "A charming tourist destination in Rome.",
+        },
+        {
+          id: "4",
+          name: "New York",
+          duration: "10 days",
+          highlights: "Statue of Liberty, Central Park",
+          details: "A city that never sleeps with its iconic landmarks.",
+        },
+        {
+          id: "5",
+          name: "Cape Town",
+          duration: "8 days",
+          highlights: "Table Mountain, Robben Island",
+          details: "A serene and relaxing destination in Cape Town.",
+        },
+        {
+          id: "6",
+          name: "Sydney",
+          duration: "9 days",
+          highlights: "Opera House, Bondi Beach",
+          details: "A vibrant city with a rich cultural heritage.",
+        },
+      ];
+
+      const getTravelId = (id) => {
+        const url = new URL(window.location.href);
+        return url.searchParams.get(id);
+      };
+
+      const travelId = getTravelId("id");
+
+      const travelDetailsData = travelData.find((data) => data.id == travelId);
+
+      const travelDetails = document.querySelector("#travel-details");
+
+      if (travelDetailsData) {
+        travelDetails.innerHTML = `
+        <div class="card w-50 justify-content-center">
+          <div class="card-body">
+            <h4>${travelDetailsData.name}</h4>
+            <p><strong>Duration:</strong> ${travelDetailsData.duration}</p>
+            <p><strong>Highlights:</strong> ${travelDetailsData.highlights}</p>
+            <p><strong>Details:</strong> ${travelDetailsData.details}</p> 
+          </div>
+        </div>
+        `;
+      } else {
+        travelDetails.innerHTML = "No travel details found.";
+      }
+    </script>
   </body>
 </html>
